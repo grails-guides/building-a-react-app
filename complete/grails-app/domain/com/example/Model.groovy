@@ -9,8 +9,4 @@ class Model {
 
     static constraints = {
     }
-
-    String toString() {
-        name
-    }
 }

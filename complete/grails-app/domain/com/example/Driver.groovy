@@ -12,8 +12,4 @@ class Driver {
     static constraints = {
         vehicles nullable: true
     }
-
-    String toString() {
-        name
-    }
 }

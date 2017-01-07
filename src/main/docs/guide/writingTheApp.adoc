@@ -10,7 +10,7 @@ Let's start by creating our domain model for the application.
 ~ grails create-domain-class com.example.Model
 ----
 
-Now let's edit our domain class under `grails-app/domain/com/example/`. We'll add some properties, `toString` implementations, and `@Resource` annotation.
+Now let's edit our domain class under `grails-app/domain/com/example/`. We'll add some properties and the `@Resource` annotation.
 
 [source,groovy]
 ----
@@ -46,10 +46,6 @@ class Driver {
 
     static constraints = {
     }
-
-    String toString() {
-        name
-    }
 }
 ----
 
@@ -65,10 +61,6 @@ class Make {
 
     static constraints = {
     }
-
-    String toString() {
-        name
-    }
 }
 ----
 
@@ -83,10 +75,6 @@ class Model {
     String name
 
     static constraints = {
-    }
-
-    String toString() {
-        name
     }
 }
 ----
