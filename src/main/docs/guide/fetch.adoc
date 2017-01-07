@@ -13,7 +13,7 @@ Edit `src/main/webapp/app/garage.js`:
 [source,javascript]
 ----
 //...
-import 'whatwg-fetch';    // <- Import the fetch library
+import 'whatwg-fetch';    // <1>
 
 require('./../styles/style.css');
 
@@ -23,11 +23,11 @@ class Garage extends React.Component {
     super();
 
     this.state = {
-      vehicles: []         // <- remove the hard-coded data
+      vehicles: [] // <2>
     }
   }
 
-  componentDidMount() {    // <-- load data from our API
+  componentDidMount() { // <3>
     fetch('/vehicle')
       .then(r => r.json())
       .then(json => this.setState({vehicles: json}))
@@ -35,6 +35,9 @@ class Garage extends React.Component {
 
 //...
 ----
+<1> Import the `fetch` library
+<2> Remove the hard-coded data.
+<3> Load data from the API
 
 `componentDidMount` is one of React's component lifecycle methods. It is fired as soon as the component is loaded on a page.  In this method, we use `fetch` to make a request (a GET request by default) to our `/vehicle` endpoint, parse the JSON payload, and call `this.setState` to update our `vehicles` collection with the data.
 

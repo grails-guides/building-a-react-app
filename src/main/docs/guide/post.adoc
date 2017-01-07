@@ -10,14 +10,14 @@ class AddVehicleForm extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
+    this.state = {  // <1>
       name: '',
       make: {id: ''},
       model: {id: ''},
       driver: {id: ''}};
   }
 
-  handleSubmit = (event) => {
+  handleSubmit = (event) => {  // <2>
     event.preventDefault();
 
     const {name, make, model, driver} = this.state;
@@ -26,56 +26,56 @@ class AddVehicleForm extends React.Component {
       console.warn("missing required field!");
       return;
     }
-    this.props.onSubmit( {name, make, model, driver} );
+    this.props.onSubmit( {name, make, model, driver} );  //<3>
     this.setState({ name: '', make: {id: ''}, model: {id: ''}, driver: {id: ''}});
   };
 
-  handleNameChange = (event) => {
+  handleNameChange = (event) => {  //<4>
     this.setState({ name: event.target.value });
   };
 
-  handleMakeChange = (event) => {
+  handleMakeChange = (event) => { //<4>
     this.setState({ make: {id: event.target.value} });
   };
 
-  handleModelChange = (event) => {
+  handleModelChange = (event) => { //<4>
     this.setState({ model: {id: event.target.value} });
   };
 
-  handleDriverChange = (event) => {
+  handleDriverChange = (event) => { //<4>
     this.setState({ driver: {id: event.target.value} });
   };
 
 
   render() {
 
-    function renderSelectList(item) {
+    function renderSelectList(item) { //<5>
       return <option key={item.id} value={item.id}>{item.name}</option>
     }
 
     return(
       <div>
         <h3>Add a Vehicle:</h3>
-        <form className="form form-inline" onSubmit={this.handleSubmit}  >
+        <form className="form form-inline" onSubmit={this.handleSubmit}>
           <label>Name</label>
           <input className="form-control" name="name" type="text" value={ this.state.name } onChange={ this.handleNameChange } />
 
           <label>Make</label>
-          <select className="form-control" name="make" value={this.state.make.id} onChange={this.handleMakeChange}>
+          <select className="form-control" name="make" value={this.state.make.id} onChange={this.handleMakeChange}> //<6>
             <option value={null}>Select a Make...</option>
-            {this.props.makes.map(renderSelectList)}
+            {this.props.makes.map(renderSelectList)} //<5>
           </select>
 
           <label>Model</label>
-          <select className="form-control" name="model" value={this.state.model.id} onChange={this.handleModelChange}>
+          <select className="form-control" name="model" value={this.state.model.id} onChange={this.handleModelChange}> //<6>
             <option value={null}>Select a Model...</option>
-            {this.props.models.map(renderSelectList)}
+            {this.props.models.map(renderSelectList)} //<5>
           </select>
 
           <label>Driver</label>
-          <select className="form-control" name="driver" value={this.state.driver.id} onChange={this.handleDriverChange}>
+          <select className="form-control" name="driver" value={this.state.driver.id} onChange={this.handleDriverChange}> //<6>
             <option value={null}>Select a Driver...</option>
-            {this.props.drivers.map(renderSelectList)}
+            {this.props.drivers.map(renderSelectList)} //<5>
           </select>
 
           <input className="btn btn-success"  type="submit" value="Add to library" />
@@ -95,6 +95,13 @@ AddVehicleForm.propTypes = {
 
 export default AddVehicleForm;
 ----
+<1> Initialize `state` object with all the properties needed to populate a new Vehicle
+<2> Create event handler to handle form submission
+<3> Pass the properties from `state` to the `onSubmit` callback function
+<4> Event handlers to update `state` whenever user input is received
+<5> Render options in `select` lists from the arrays in our props
+<6> Call event handlers whenever user changes input value
+
 
 This is a fairly complex component, so don't worry if you don't understand it all immediately. The key points are that the `AddVehicleForm` component allows the user to set 4 properties needed to create a new Vehicle instance: `name`, `make`, `model` and `driver`. It takes a function prop called `onSubmit`, which is used when the form is submitted.
 
@@ -107,7 +114,7 @@ Edit `src/main/webapp/app/garage.js`:
 [source, javascript]
 ----
 //..
-import AddVehicleForm from './add-vehicle-form'; // <-- import AddVehicleForm
+import AddVehicleForm from './add-vehicle-form'; // <1>
 
 class Garage extends React.Component {
 
@@ -116,9 +123,9 @@ class Garage extends React.Component {
 
     this.state = {
       vehicles: [],
-      makes: [],            // <-- add makes array
-      models: [],           // <-- add models array
-      drivers: []           // <-- add drivers array
+      makes: [],            // <2>
+      models: [],
+      drivers: []
     }
   }
 
@@ -128,17 +135,17 @@ class Garage extends React.Component {
       .then(json => this.setState({vehicles: json}))
       .catch(error => console.error('Error retrieving vehicles: ' + error));
 
-    fetch('/make')                  // <-- retrieve makes from API
+    fetch('/make')                  // <3>
       .then(r => r.json())
       .then(json => this.setState({makes: json}))
       .catch(error => console.error('Error retrieving makes: ' + error));
 
-    fetch('/model')                 // <-- retrieve models from API
+    fetch('/model')                 // <3>
       .then(r => r.json())
       .then(json => this.setState({models: json}))
       .catch(error => console.error('Error retrieving models ' + error));
 
-    fetch('/driver')                // <-- retrieve drivers from API
+    fetch('/driver')                // <3>
       .then(r => r.json())
       .then(json => this.setState({drivers: json}))
       .catch(error => console.error('Error retrieving drivers: ' + error));
@@ -146,16 +153,21 @@ class Garage extends React.Component {
   }
 
   render() {
-    const {vehicles, makes, models, drivers} = this.state;  // <-- retrieve vehicles, makes, models, drivers from this.state using ES6 destructuring syntax
+    const {vehicles, makes, models, drivers} = this.state;  // <4>
 
     return <div>
-      <AddVehicleForm makes={makes} models={models} drivers={drivers}/> // <-- pass makes, models, drivers to AddVehicleForm
+      <AddVehicleForm makes={makes} models={models} drivers={drivers}/> // <5>
       <Vehicles vehicles={vehicles} />
     </div>;
   }
 }
 //...
 ----
+<1> Import `AddVehicleForm` component
+<2> Add `makes`, `models`, and `drivers` to `state`
+<3> Retrieve data from API
+<4> Retrieve vehicles, makes, models, drivers from this.state using ES6 destructuring syntax
+<5> Pass `makes`, `models`, and `drivers` to AddVehicleForm
 
 The final step is to implement the function that we will pass in to `AddVehicleForm` via the `onSubmit` prop. This function needs to do two things:
 
@@ -172,8 +184,7 @@ class Garage extends React.Component {
 
   //...
 
-  submitNewVehicle = (vehicle) => {   // <-- create submitNewVehicle function
-    console.log('submitNewVehicle...');
+  submitNewVehicle = (vehicle) => {   // <1>
     fetch('/vehicle', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -192,7 +203,8 @@ class Garage extends React.Component {
     const {vehicles, makes, models, drivers} = this.state;
 
     return <div>
-      <AddVehicleForm onSubmit={this.submitNewVehicle} makes={makes} models={models} drivers={drivers}/>
+      <AddVehicleForm onSubmit={this.submitNewVehicle} // <2>
+        makes={makes} models={models} drivers={drivers}/>
       <Vehicles vehicles={vehicles} />
     </div>;
   }
@@ -202,6 +214,8 @@ class Garage extends React.Component {
 ReactDOM.render(<Garage />, document.getElementById('garage'));
 //...
 ----
+<1> Create `submitNewVehicle` function
+<2> Pass function as `onSubmit` prop to `AddVehicleForm`
 
 Again, we're using the `fetch` API, this time for a POST request to the `/vehicle` endpoint.  We call `JSON.stringify` to convert the parameters received from `AddVehicleForm` into a JSON string, which we can then post to our Grails API. The API will return the newly created vehicle instance, which we can then parse and insert into our `state` object with `this.setState`.
 
