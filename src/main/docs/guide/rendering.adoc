@@ -1,4 +1,4 @@
-The React 1.x profile relies on Webpack to bundle React components into browser-ready JavaScript bundles, which can then be loaded via the Grails Asset Pipeline. The default application includes a single "index" bundle which is rendered on the index page. Let's set up a new bundle for our `Garage` app.
+The React 1.0.2 profile relies on Webpack to bundle React components into browser-ready JavaScript bundles, which can then be loaded via the Grails Asset Pipeline. The default application includes a single "index" bundle which is rendered on the index page. Let's set up a new bundle for our `Garage` app.
 
 In `webpack.config.js`, edit the `entry` section and add a line to load our `garage.js` file, as seen below:
 
