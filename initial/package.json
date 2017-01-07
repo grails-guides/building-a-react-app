@@ -1,5 +1,5 @@
 {
-  "name": "building-ar-eact-app",
+  "name": "building-a-react-app",
   "version": "0.0.1",
   "description": "A profile for creating applications with React frontends using webpack",
   "main": "app.js",
