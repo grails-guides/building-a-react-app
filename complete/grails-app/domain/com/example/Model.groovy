@@ -2,7 +2,7 @@ package com.example
 
 import grails.rest.Resource
 
-@Resource
+@Resource(uri = '/model')
 class Model {
 
     String name

@@ -1,0 +1,22 @@
+import com.example.Vehicle
+
+model {
+    Vehicle vehicle
+}
+json {
+    id vehicle.id
+    name vehicle.name
+    make {
+        name vehicle.make.name
+        id vehicle.make.id
+    }
+    delegate.invokeMethod 'model', //TODO: Workaround: https://github.com/grails/grails-views/issues/45
+        [{
+            name vehicle.model.name
+            id vehicle.model.id
+        }] as Object[]
+    driver {
+        name vehicle.driver.name
+        id vehicle.driver.id
+    }
+}

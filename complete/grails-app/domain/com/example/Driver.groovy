@@ -2,7 +2,7 @@ package com.example
 
 import grails.rest.Resource
 
-@Resource
+@Resource(uri = '/driver')
 class Driver {
 
     String name
@@ -10,6 +10,7 @@ class Driver {
     static hasMany = [ vehicles: Vehicle ]
 
     static constraints = {
+        vehicles nullable: true
     }
 
     String toString() {
