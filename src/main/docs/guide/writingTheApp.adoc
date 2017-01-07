@@ -1,1 +1,122 @@
-TODO: Complete the guide
+The React profile includes some default React sample code. Feel free to run the app as is if you want to see the sample in action.
+
+Let's start by creating our domain model for the application.
+
+[source,bash]
+----
+~ grails create-domain-class com.example.Vehicle
+~ grails create-domain-class com.example.Driver
+~ grails create-domain-class com.example.Make
+~ grails create-domain-class com.example.Model
+----
+
+Now let's edit our domain class under `grails-app/domain/com/example/`. We'll add some properties, `toString` implementations, and `@Resource` annotation.
+
+[source,groovy]
+----
+package com.example
+import grails.rest.Resource
+
+@Resource(uri = '/vehicle')
+class Vehicle {
+
+    String name
+
+    Make make
+    Model model
+
+    static belongsTo = [driver: Driver]
+
+    static constraints = {
+    }
+}
+----
+
+[source,groovy]
+----
+package com.example
+import grails.rest.Resource
+
+@Resource(uri = '/driver')
+class Driver {
+
+    String name
+
+    static hasMany = [ vehicle: Vehicle ]
+
+    static constraints = {
+    }
+
+    String toString() {
+        name
+    }
+}
+----
+
+[source,groovy]
+----
+package com.example
+import grails.rest.Resource
+
+@Resource(uri = '/make')
+class Make {
+
+    String name
+
+    static constraints = {
+    }
+
+    String toString() {
+        name
+    }
+}
+----
+
+[source,groovy]
+----
+package com.example
+import grails.rest.Resource
+
+@Resource(uri = '/model')
+class Model {
+
+    String name
+
+    static constraints = {
+    }
+
+    String toString() {
+        name
+    }
+}
+----
+
+Since we've added the `@Resource` annotation to our domain classes, Grails will generate RESTful URL mappings for each of them. Let's preload some data:
+
+[source,groovy]
+----
+package building.a.react.app
+import com.example.*
+
+class BootStrap {
+
+    def init = { servletContext ->
+        println "Loading database..."
+        def driver1 = new Driver(name: "Susan").save()
+        def driver2 = new Driver(name: "Pedro").save()
+
+        def nissan = new Make(name: "Nissan").save()
+        def ford = new Make(name: "Ford").save()
+
+        def titan = new Model(name: "Titan").save()
+        def leaf = new Model(name: "Leaf").save()
+        def windstar = new Model(name: "Windstar").save()
+
+        new Vehicle(name: "Pickup", driver: driver1, make: nissan, model: titan).save()
+        new Vehicle(name: "Economy", driver: driver1, make: nissan, model: leaf).save()
+        new Vehicle(name: "Minivan", driver: driver2, make: ford, model: windstar).save()
+
+    }
+    def destroy = {
+    }
+----
