@@ -2,3 +2,5 @@
 build/
 .idea/
 *.iml
+node_modules/
+complete/node_modules/
