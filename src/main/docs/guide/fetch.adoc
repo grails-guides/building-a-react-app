@@ -4,13 +4,14 @@ Install `fetch` via `npm`:
 
 [source,bash]
 ----
-~ npm install --save whatwg-fetch
+$ npm install --save whatwg-fetch
 ----
 
 
 Edit `src/main/webapp/app/garage.js`:
 
 [source,javascript]
+.src/main/webapp/app/garage.js
 ----
 //...
 import 'whatwg-fetch';    // <1>

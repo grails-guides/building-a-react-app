@@ -6,50 +6,7 @@ Here's our `Vehicles` component:
 
 [source,javascript]
 ----
-import React from 'react';
-import {Table} from 'react-bootstrap';
-
-class Vehicles extends React.Component {
-
-  render() {
-    function renderVehicleRow(vehicle) {
-
-      return (<tr key={vehicle.id}>
-        <td>{vehicle.id}</td>
-        <td>{vehicle.name}</td>
-        <td>{vehicle.make.name}</td>
-        <td>{vehicle.model.name}</td>
-        <td>{vehicle.driver.name}</td>
-      </tr>);
-    }
-
-
-    return <div>
-      <Table striped bordered condensed hover>
-        <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Make</th>
-          <th>Model</th>
-          <th>Driver</th>
-        </tr>
-        </thead>
-        <tbody>
-
-        {this.props.vehicles.map(renderVehicleRow)}
-
-        </tbody>
-      </Table>
-    </div>;
-  }
-}
-
-Vehicles.propTypes = {
-  vehicles: React.PropTypes.array
-};
-
-export default Vehicles;
+include::{sourceDir}/src/main/webapp/app/vehicles.js[]
 ----
 
 Note that in the `renderVehicleRow` function we are accessing the customized JSON representation of our Vehicle instances, so we can use `vehicle.make.name`, for example.

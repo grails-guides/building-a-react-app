@@ -5,7 +5,7 @@ import com.example.*
 class BootStrap {
 
     def init = { servletContext ->
-        println "Loading database..."
+        log.info "Loading database..."
         def driver1 = new Driver(name: "Susan").save()
         def driver2 = new Driver(name: "Pedro").save()
 

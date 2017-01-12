@@ -3,16 +3,16 @@ Now, if we run our app, we can try out the RESTful API that Grails has generated
 
 [source,bash]
 ----
-~ ./grailsw run-app
+$ ./grailsw run-app
 ----
 
 Now we can exercise the API using cURL or another API tool.
 
-Make a GET request to `/vehicle` to get a list of Vehicles:
+Make a `GET` request to `/vehicle` to get a list of Vehicles:
 
 [source,bash]
 ----
-~ curl -X "GET" "http://localhost:8080/vehicle"
+$ curl -X "GET" "http://localhost:8080/vehicle"
 
 HTTP/1.1 200
 X-Application-Context: application:development
@@ -26,11 +26,11 @@ Connection: close
 {"id":3,"driver":{"id":2},"make":{"id":2},"model":{"id":3},"name":"Minivan"}]
 ----
 
-Make a GET request to `/driver/1` to get a particular Driver instance:
+Make a `GET` request to `/driver/1` to get a particular Driver instance:
 
 [source,bash]
 ----
-~ curl -X "GET" "http://localhost:8080/driver/1"
+$ curl -X "GET" "http://localhost:8080/driver/1"
 
 HTTP/1.1 200
 X-Application-Context: application:development
@@ -42,11 +42,11 @@ Connection: close
 {"id":1,"name":"Susan","vehicle":[{"id":2},{"id":1}]}
 ----
 
-Make a POST request to `/driver` to create a new Driver instance:
+Make a `POST` request to `/driver` to create a new Driver instance:
 
 [source,bash]
 ----
-~ curl -X "POST" "http://localhost:8080/driver" \
+$ curl -X "POST" "http://localhost:8080/driver" \
       -H "Content-Type: application/json; charset=utf-8" \
       -d '{"name":"Edward"}'
 
@@ -61,11 +61,11 @@ Connection: close
 {"id":3,"name":"Edward"}
 ----
 
-Make a PUT request to `/vehicle` to update a Vehicle instance:
+Make a `PUT` request to `/vehicle` to update a Vehicle instance:
 
 [source,bash]
 ----
-~ curl -X "PUT" "http://localhost:8080/vehicle/1" \
+$ curl -X "PUT" "http://localhost:8080/vehicle/1" \
        -H "Content-Type: application/json; charset=utf-8" \
        -d '{"name":"Truck","id":1}'
 

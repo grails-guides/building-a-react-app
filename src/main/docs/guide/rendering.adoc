@@ -3,15 +3,10 @@ The React 1.0.2 profile relies on Webpack to bundle React components into browse
 In `webpack.config.js`, edit the `entry` section and add a line to load our `garage.js` file, as seen below:
 
 [source,javascript]
+.webpack.config.js
 ----
-var path = require('path');
-
-module.exports = {
-    entry: {
-        index: './src/main/webapp/app/app.js',     <2>
-        garage: './src/main/webapp/app/garage.js'  <1>
-    },
-    //...
+include::{sourceDir}/webpack.config.js[tags=garageEntry,indent=0]
+//...
 ----
 <1> Add the path to `garage.js` as the `garage` entry point
 <2> Don't forget the comma!
@@ -21,14 +16,11 @@ This will cause Webpack to bundle two different React apps, "index" and "garage"
 In `webpack.config.js`, edit the `output` section and change the `filename` line as shown below:
 
 [source,javascript]
+.webpack.config.js
 ----
-    //...
-    output: {
-        path: './grails-app/assets/javascripts',
-        publicPath: '/assets/',
-        filename: 'bundle-[name].js'  // <1>
-    },
-    //...
+//...
+include::{sourceDir}/webpack.config.js[tags=outputSection,indent=0]
+//...
 ----
 <1> Add `-[name]` to the filename property
 
@@ -60,36 +52,17 @@ Now we are finally ready to create a home page for our `Garage` app. Create a ne
 Make sure that `GarageController` contains a single `index` action.
 
 [source,groovy]
+.grails-app/controllers/com/example/GarageController.groovy
 ----
-package com.example
-
-class GarageController {
-    def index() { }
-}
+include::{sourceDir}/grails-app/controllers/com/example/GarageController.groovy[]
 ----
 
 Now, create a simple `index.gsp` page under `grails-app/views/garage`:
 
 [source,xml]
+.grails-app/views/garage/index.gsp
 ----
-<!doctype html>
-<html>
-<head>
-    <meta name="layout" content="main"/>
-    <title>Garage</title>
-    <asset:link rel="icon" href="favicon.ico" type="image/x-ico" />
-</head>
-<body>
-
-<div id="content" role="main">
-    <section class="row colset-2-its">
-        <div id="garage"></div>
-        <asset:javascript src="bundle-garage.js" />
-    </section>
-</div>
-
-</body>
-</html>
+include::{sourceDir}/grails-app/views/garage/index.gsp[]
 ----
 
 Restart the app, and browse to `http://localhost:8080/garage`. You should see our new React app loaded on the page, with a single hard-coded row of data.

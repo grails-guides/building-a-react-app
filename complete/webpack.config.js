@@ -1,15 +1,19 @@
+//tag::garageEntry[]
 var path = require('path');
 
 module.exports = {
     entry: {
-        index: './src/main/webapp/app/app.js',
-        garage: './src/main/webapp/app/garage.js'
+        index: './src/main/webapp/app/app.js', // <1>
+        garage: './src/main/webapp/app/garage.js' // <2>
     },
+    //end::garageEntry[]
+    //tag::outputSection[]
     output: {
         path: './grails-app/assets/javascripts',
         publicPath: '/assets/',
-        filename: 'bundle-[name].js'
+        filename: 'bundle-[name].js' // <1>
     },
+    //end::outputSection[]
     module: {
         loaders: [
             {

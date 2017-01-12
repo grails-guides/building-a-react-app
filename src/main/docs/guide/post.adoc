@@ -1,99 +1,11 @@
 Our last step in this guide is to create a simple form for posting new `Vehicle` instances to our API.
 
-Create a new JavaScript file under `src/main/webapp` called `add-vehicle-form.js`, with the following content:
+Create a new JavaScript file under `src/main/webapp/app` called `add-vehicle-form.js`, with the following content:
 
 [source,javascript]
+.src/main/webapp/app/add-vehicle-form.js
 ----
-import React from 'react';
-
-class AddVehicleForm extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {  // <1>
-      name: '',
-      make: {id: ''},
-      model: {id: ''},
-      driver: {id: ''}};
-  }
-
-  handleSubmit = (event) => {  // <2>
-    event.preventDefault();
-
-    const {name, make, model, driver} = this.state;
-
-    if (!name || !make.id || !model.id || !driver.id) {
-      console.warn("missing required field!");
-      return;
-    }
-    this.props.onSubmit( {name, make, model, driver} );  //<3>
-    this.setState({ name: '', make: {id: ''}, model: {id: ''}, driver: {id: ''}});
-  };
-
-  handleNameChange = (event) => {  //<4>
-    this.setState({ name: event.target.value });
-  };
-
-  handleMakeChange = (event) => { //<4>
-    this.setState({ make: {id: event.target.value} });
-  };
-
-  handleModelChange = (event) => { //<4>
-    this.setState({ model: {id: event.target.value} });
-  };
-
-  handleDriverChange = (event) => { //<4>
-    this.setState({ driver: {id: event.target.value} });
-  };
-
-
-  render() {
-
-    function renderSelectList(item) { //<5>
-      return <option key={item.id} value={item.id}>{item.name}</option>
-    }
-
-    return(
-      <div>
-        <h3>Add a Vehicle:</h3>
-        <form className="form form-inline" onSubmit={this.handleSubmit}>
-          <label>Name</label>
-          <input className="form-control" name="name" type="text" value={ this.state.name } onChange={ this.handleNameChange } />
-
-          <label>Make</label>
-          <select className="form-control" name="make" value={this.state.make.id} onChange={this.handleMakeChange}> //<6>
-            <option value={null}>Select a Make...</option>
-            {this.props.makes.map(renderSelectList)} //<5>
-          </select>
-
-          <label>Model</label>
-          <select className="form-control" name="model" value={this.state.model.id} onChange={this.handleModelChange}> //<6>
-            <option value={null}>Select a Model...</option>
-            {this.props.models.map(renderSelectList)} //<5>
-          </select>
-
-          <label>Driver</label>
-          <select className="form-control" name="driver" value={this.state.driver.id} onChange={this.handleDriverChange}> //<6>
-            <option value={null}>Select a Driver...</option>
-            {this.props.drivers.map(renderSelectList)} //<5>
-          </select>
-
-          <input className="btn btn-success"  type="submit" value="Add to library" />
-        </form>
-      </div>
-    );
-
-  }
-}
-
-AddVehicleForm.propTypes = {
-  makes: React.PropTypes.array,
-  models: React.PropTypes.array,
-  drivers: React.PropTypes.array,
-  onSubmit: React.PropTypes.func
-};
-
-export default AddVehicleForm;
+include::{sourceDir}/src/main/webapp/app/add-vehicle-form.js[]
 ----
 <1> Initialize `state` object with all the properties needed to populate a new Vehicle
 <2> Create event handler to handle form submission
@@ -105,13 +17,14 @@ export default AddVehicleForm;
 
 This is a fairly complex component, so don't worry if you don't understand it all immediately. The key points are that the `AddVehicleForm` component allows the user to set 4 properties needed to create a new Vehicle instance: `name`, `make`, `model` and `driver`. It takes a function prop called `onSubmit`, which is used when the form is submitted.
 
-NOTE: This pattern of passing functions (handlers) as props is a good practice in React. It allows components to be reused easily because specific functionality can be swapped by different callers (e.g., by passing a different function as the `onSubmit` prop). Similarly as with `state`, centralizing your functional logic in a few components, and passing down those functions as props to child components, is a good pattern when programming with React. For a more semantic version of this pattern, you might consider a https://facebook.github.io/flux/[Flux implementation] such as http://redux.js.org/[Redux] to externalize both your `state` and your logic.
+NOTE: This pattern of passing functions (handlers) as props is good practice in React. It allows components to be reused easily because specific functionality can be swapped by different callers (e.g., by passing a different function as the `onSubmit` prop). Similarly as with `state`, centralizing your functional logic in a few components, and passing down those functions as props to child components, is a good pattern when programming with React. For a more semantic version of this pattern, you might consider a https://facebook.github.io/flux/[Flux implementation] such as http://redux.js.org/[Redux] to externalize both your `state` and your logic.
 
 Because `make`, `model`, and `driver` are associations, we need to allow the user to select an ID so that Grails can perform the assignment during databinding. `AddVehicleForm` takes 3 props which it expects to contain arrays of these associations. We'll need to provide them in order to use `AddUserForm`, so let's edit the `Garage` component to retrieve those lists.
 
 Edit `src/main/webapp/app/garage.js`:
 
 [source, javascript]
+.src/main/webapp/app/garage.js
 ----
 //..
 import AddVehicleForm from './add-vehicle-form'; // <1>
@@ -177,6 +90,7 @@ The final step is to implement the function that we will pass in to `AddVehicleF
 Let's implement this function. Edit `src/main/webapp/app/garage.js` one more time:
 
 [source, javascript]
+.src/main/webapp/app/garage.js
 ----
 //..
 
