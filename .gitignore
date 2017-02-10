@@ -4,3 +4,4 @@ build/
 *.iml
 node_modules/
 complete/node_modules/
+.DS_Store
