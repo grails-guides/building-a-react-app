@@ -1,4 +1,4 @@
-package building.a.react.app
+package demo
 
 import grails.core.GrailsApplication
 import grails.util.Environment

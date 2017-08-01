@@ -46,15 +46,15 @@ Now we are finally ready to create a home page for our `Garage` app. Create a ne
 
 [source,bash]
 ----
-./grailsw create-controller com.example.GarageController
+./grailsw create-controller demo.GarageController
 ----
 
 Make sure that `GarageController` contains a single `index` action.
 
 [source,groovy]
-.grails-app/controllers/com/example/GarageController.groovy
+.grails-app/controllers/demo/GarageController.groovy
 ----
-include::{sourceDir}/grails-app/controllers/com/example/GarageController.groovy[]
+include::{sourceDir}/grails-app/controllers/demo/GarageController.groovy[]
 ----
 
 Now, create a simple `index.gsp` page under `grails-app/views/garage`:

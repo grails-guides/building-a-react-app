@@ -1,4 +1,4 @@
-package building.a.react.app
+package demo
 
 class BootStrap {
 

@@ -2,7 +2,7 @@
 grails:
     profile: org.grails.profiles:react:1.0.2
     codegen:
-        defaultPackage: building.a.react.app
+        defaultPackage: demo
     spring:
         transactionManagement:
             proxies: false

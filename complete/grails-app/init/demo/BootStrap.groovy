@@ -1,6 +1,9 @@
-package building.a.react.app
+package demo
 
-import com.example.*
+import demo.Driver
+import demo.Make
+import demo.Model
+import demo.Vehicle
 
 class BootStrap {
 
