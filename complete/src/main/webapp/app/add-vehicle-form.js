@@ -56,23 +56,23 @@ class AddVehicleForm extends React.Component {
 
           <label>Make</label>
           <select className="form-control" name="make" value={this.state.make.id} 
-            onChange={this.handleMakeChange}>  //<6>
+            onChange={this.handleMakeChange}>
             <option value={null}>Select a Make...</option>
-            {this.props.makes.map(renderSelectList)} //<5>
+            {this.props.makes.map(renderSelectList)}
           </select>
 
           <label>Model</label>
           <select className="form-control" name="model" value={this.state.model.id} 
-            onChange={this.handleModelChange}>  //<6>
+            onChange={this.handleModelChange}>
             <option value={null}>Select a Model...</option>
-            {this.props.models.map(renderSelectList)} //<5>
+            {this.props.models.map(renderSelectList)}
           </select>
 
           <label>Driver</label>
           <select className="form-control" name="driver" value={this.state.driver.id} 
-            onChange={this.handleDriverChange}>  //<6>
+            onChange={this.handleDriverChange}>
             <option value={null}>Select a Driver...</option>
-            {this.props.drivers.map(renderSelectList)} //<5>
+            {this.props.drivers.map(renderSelectList)}
           </select>
 
           <input className="btn btn-success"  type="submit" value="Add to library" />
