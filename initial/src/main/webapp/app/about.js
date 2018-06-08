@@ -1,5 +1,4 @@
 import React from 'react';
-import Immutable from 'immutable'
 import autobind from './util/autobind'
 import {Modal, Button} from 'react-bootstrap';
 

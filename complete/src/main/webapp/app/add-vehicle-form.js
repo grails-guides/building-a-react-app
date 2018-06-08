@@ -1,4 +1,5 @@
 import React from 'react';
+import {array, func} from 'prop-types';
 
 class AddVehicleForm extends React.Component {
 
@@ -56,23 +57,23 @@ class AddVehicleForm extends React.Component {
 
           <label>Make</label>
           <select className="form-control" name="make" value={this.state.make.id} 
-            onChange={this.handleMakeChange}>  //<6>
+            onChange={this.handleMakeChange}>  {/*<6>*/}
             <option value={null}>Select a Make...</option>
-            {this.props.makes.map(renderSelectList)} //<5>
+            {this.props.makes.map(renderSelectList)}  {/*<5>*/}
           </select>
 
           <label>Model</label>
           <select className="form-control" name="model" value={this.state.model.id} 
-            onChange={this.handleModelChange}>  //<6>
+            onChange={this.handleModelChange}>  {/*<6>*/}
             <option value={null}>Select a Model...</option>
-            {this.props.models.map(renderSelectList)} //<5>
+            {this.props.models.map(renderSelectList)}  {/*<5>*/}
           </select>
 
           <label>Driver</label>
           <select className="form-control" name="driver" value={this.state.driver.id} 
-            onChange={this.handleDriverChange}>  //<6>
+            onChange={this.handleDriverChange}>  {/*<6>*/}
             <option value={null}>Select a Driver...</option>
-            {this.props.drivers.map(renderSelectList)} //<5>
+            {this.props.drivers.map(renderSelectList)}  {/*<5>*/}
           </select>
 
           <input className="btn btn-success"  type="submit" value="Add to library" />
@@ -84,10 +85,10 @@ class AddVehicleForm extends React.Component {
 }
 
 AddVehicleForm.propTypes = {
-  makes: React.PropTypes.array,
-  models: React.PropTypes.array,
-  drivers: React.PropTypes.array,
-  onSubmit: React.PropTypes.func
+  makes: array,
+  models: array,
+  drivers: array,
+  onSubmit: func
 };
 
 export default AddVehicleForm;

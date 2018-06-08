@@ -4,8 +4,6 @@ import Vehicles from './vehicles';
 import AddVehicleForm from './add-vehicle-form';
 import 'whatwg-fetch';
 
-require('./../styles/style.css');
-
 class Garage extends React.Component {
 
   constructor() {

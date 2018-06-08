@@ -1,5 +1,6 @@
 import React from 'react';
 import {Table} from 'react-bootstrap';
+import {array} from 'prop-types';
 
 class Vehicles extends React.Component {
 
@@ -38,7 +39,7 @@ class Vehicles extends React.Component {
 }
 
 Vehicles.propTypes = {
-  vehicles: React.PropTypes.array
+  vehicles: array
 };
 
 export default Vehicles;
