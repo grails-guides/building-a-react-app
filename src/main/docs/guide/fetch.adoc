@@ -1,22 +1,12 @@
 Now that our `Garage` component is set up and rendering the `Vehicles` table on our page, we can finally hook up our API to load data into our React views. We'll use the `fetch` API for this purpose.
 
-Install `fetch` via `npm`:
-
-[source,bash]
-----
-$ npm install --save whatwg-fetch
-----
-
-
-Edit `src/main/webapp/app/garage.js`:
+Edit `src/main/webapp/app/Garage.js`:
 
 [source,javascript]
-.src/main/webapp/app/garage.js
+.src/main/webapp/app/Garage.js
 ----
 //...
 import 'whatwg-fetch';    // <1>
-
-require('./../styles/style.css');
 
 class Garage extends React.Component {
 
@@ -33,7 +23,7 @@ class Garage extends React.Component {
       .then(r => r.json())
       .then(json => this.setState({vehicles: json}))
       .catch(error => console.error('Error retrieving vehicles: ' + error));
-
+  }
 //...
 ----
 <1> Import the `fetch` library

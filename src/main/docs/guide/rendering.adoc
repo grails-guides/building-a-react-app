@@ -1,6 +1,6 @@
 The React 1.0.2 profile relies on Webpack to bundle React components into browser-ready JavaScript bundles, which can then be loaded via the Grails Asset Pipeline. The default application includes a single "index" bundle which is rendered on the index page. Let's set up a new bundle for our `Garage` app.
 
-In `webpack.config.js`, edit the `entry` section and add a line to load our `garage.js` file, as seen below:
+In `webpack.config.js`, edit the `entry` section and add a line to load our `Garage.js` file, as seen below:
 
 [source,javascript]
 .webpack.config.js
@@ -8,7 +8,7 @@ In `webpack.config.js`, edit the `entry` section and add a line to load our `gar
 include::{sourceDir}/webpack.config.js[tags=garageEntry,indent=0]
 //...
 ----
-<1> Add the path to `garage.js` as the `garage` entry point
+<1> Add the path to `Garage.js` as the `garage` entry point
 <2> Don't forget the comma!
 
 This will cause Webpack to bundle two different React apps, "index" and "garage". We also need to configure Webpack to output separate bundles for each React app, so we can load them on different pages of our Grails app.
@@ -24,7 +24,7 @@ include::{sourceDir}/webpack.config.js[tags=outputSection,indent=0]
 ----
 <1> Add `-[name]` to the filename property
 
-Now when we start up our Grails app (or run `./gradlew webpack`), Webpack will generate two bundles, one called `bundle-index.js` and one called `bundle-garage.js`. We can load these bundles on our page using the Grails Asset Pipeline tags.
+Now when we start up our Grails app (or run `./gradlew webpack`), Webpack will generate two bundles, one called `bundle-index.js` and one called `bundle-Garage.js`. We can load these bundles on our page using the Grails Asset Pipeline tags.
 
 [NOTE]
 ====

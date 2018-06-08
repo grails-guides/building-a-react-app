@@ -2,7 +2,7 @@ Now we need to give our `Vehicles` component access to data from our API. We cou
 
 With this separated approach, we can expand our app in the future to make additional API calls (and even render different components, perhaps a `Drivers` table for example), without having to clutter up our `Vehicles` component. Let's call our "container" component `Garage`.
 
-Create a new JavaScript file under `src/main/webapp/app/` called `garage.js`.
+Create a new JavaScript file under `src/main/webapp/app/` called `Garage.js`.
 
 Here's our `Garage` component:
 
@@ -10,9 +10,7 @@ Here's our `Garage` component:
 ----
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Vehicles from './vehicles';
-
-require('./../styles/style.css');
+import Vehicles from './Vehicles';
 
 class Garage extends React.Component {
 

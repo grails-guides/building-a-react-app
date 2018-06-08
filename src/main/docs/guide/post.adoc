@@ -1,11 +1,11 @@
 Our last step in this guide is to create a simple form for posting new `Vehicle` instances to our API.
 
-Create a new JavaScript file under `src/main/webapp/app` called `add-vehicle-form.js`, with the following content:
+Create a new JavaScript file under `src/main/webapp/app` called `AddVehicleForm.js`, with the following content:
 
 [source,javascript]
-.src/main/webapp/app/add-vehicle-form.js
+.src/main/webapp/app/AddVehicleForm.js
 ----
-include::{sourceDir}/src/main/webapp/app/add-vehicle-form.js[]
+include::{sourceDir}/src/main/webapp/app/AddVehicleForm.js[]
 ----
 <1> Initialize `state` object with all the properties needed to populate a new Vehicle
 <2> Create event handler to handle form submission
@@ -21,13 +21,13 @@ NOTE: This pattern of passing functions (handlers) as props is good practice in 
 
 Because `make`, `model`, and `driver` are associations, we need to allow the user to select an ID so that Grails can perform the assignment during databinding. `AddVehicleForm` takes 3 props which it expects to contain arrays of these associations. We'll need to provide them in order to use `AddUserForm`, so let's edit the `Garage` component to retrieve those lists.
 
-Edit `src/main/webapp/app/garage.js`:
+Edit `src/main/webapp/app/Garage.js`:
 
 [source, javascript]
-.src/main/webapp/app/garage.js
+.src/main/webapp/app/Garage.js
 ----
 //..
-import AddVehicleForm from './add-vehicle-form'; // <1>
+import AddVehicleForm from './AddVehicleForm'; // <1>
 
 class Garage extends React.Component {
 
@@ -87,10 +87,10 @@ The final step is to implement the function that we will pass in to `AddVehicleF
 1. Post the new vehicle details to the API, and retrieve the result from the API
 2. Update the `state` so that we can display the newly created vehicle in the `Vehicles` table
 
-Let's implement this function. Edit `src/main/webapp/app/garage.js` one more time:
+Let's implement this function. Edit `src/main/webapp/app/Garage.js` one more time:
 
 [source, javascript]
-.src/main/webapp/app/garage.js
+.src/main/webapp/app/Garage.js
 ----
 //..
 

@@ -40358,13 +40358,13 @@ var _reactDom = __webpack_require__(13);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _vehicles = __webpack_require__(311);
+var _Vehicles = __webpack_require__(311);
 
-var _vehicles2 = _interopRequireDefault(_vehicles);
+var _Vehicles2 = _interopRequireDefault(_Vehicles);
 
-var _addVehicleForm = __webpack_require__(310);
+var _AddVehicleForm = __webpack_require__(310);
 
-var _addVehicleForm2 = _interopRequireDefault(_addVehicleForm);
+var _AddVehicleForm2 = _interopRequireDefault(_AddVehicleForm);
 
 __webpack_require__(141);
 
@@ -40460,8 +40460,8 @@ var Garage = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement(_addVehicleForm2.default, { onSubmit: this.submitNewVehicle, makes: makes, models: models, drivers: drivers }),
-        _react2.default.createElement(_vehicles2.default, { vehicles: vehicles })
+        _react2.default.createElement(_AddVehicleForm2.default, { onSubmit: this.submitNewVehicle, makes: makes, models: models, drivers: drivers }),
+        _react2.default.createElement(_Vehicles2.default, { vehicles: vehicles })
       );
     }
   }]);

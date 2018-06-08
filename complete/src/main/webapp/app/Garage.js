@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Vehicles from './vehicles';
-import AddVehicleForm from './add-vehicle-form';
+import Vehicles from './Vehicles';
+import AddVehicleForm from './AddVehicleForm';
 import 'whatwg-fetch';
 
 class Garage extends React.Component {
